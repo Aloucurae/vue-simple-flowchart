@@ -5,9 +5,13 @@
     @mousedown="handleMousedown"
     @mouseover="handleMouseOver"
     @mouseleave="handleMouseLeave"
-    v-bind:class="{selected: options.selected === id}"
+    v-bind:class="{ selected: options.selected === id }"
   >
-    <div class="node-port node-input" @mousedown="inputMouseDown" @mouseup="inputMouseUp"></div>
+    <div
+      class="node-port node-input"
+      @mousedown="inputMouseDown"
+      @mouseup="inputMouseUp"
+    ></div>
     <div class="node-main">
       <div v-text="type" class="node-type"></div>
       <div v-text="label" class="node-label"></div>
@@ -114,12 +118,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 $themeColor: rgb(255, 136, 85);
-$portSize: 12;
+$portSize: 20;
 
 .flowchart-node {
   margin: 0;
-  width: 80px;
-  height: 80px;
+  width: 200px;
+  height: 60px;
   position: absolute;
   box-sizing: border-box;
   border: none;
@@ -141,24 +145,30 @@ $portSize: 12;
     }
   }
   .node-port {
+    opacity: 1;
     position: absolute;
     width: #{$portSize}px;
     height: #{$portSize}px;
-    left: 50%;
+    top: calc(50% - #{$portSize / 2}px);
     transform: translate(-50%);
     border: 1px solid #ccc;
+    cursor: pointer;
     border-radius: 100px;
-    background: white;
+    background: #fafafa;
+    // background: white;
     &:hover {
       background: $themeColor;
       border: 1px solid $themeColor;
     }
   }
   .node-input {
-    top: #{-2 + $portSize/-2}px;
+    left: calc(50% +#{$portSize / 2}px);
+    // left: #{$portSize/-5}px;
   }
   .node-output {
-    bottom: #{-2 + $portSize/-2}px;
+    // right: #{-8 + $portSize/-2}px;
+    // right: calc(#{$portSize / 2}px);
+    right: calc(#{-$portSize}px);
   }
   .node-delete {
     position: absolute;

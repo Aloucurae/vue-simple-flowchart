@@ -2,9 +2,16 @@
   <g @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
     <path :d="dAttr" :style="pathStyle"></path>
     <a v-if="show.delete" @click="deleteLink">
-      <text text-anchor="middle" :transform="arrowTransform" font-size="22">&times;</text>
+      <text text-anchor="middle" :transform="arrowTransform" font-size="22">
+        &times;
+      </text>
     </a>
-    <path v-else d="M -1 -1 L 0 1 L 1 -1 z" :style="arrowStyle" :transform="arrowTransform"></path>
+    <path
+      v-else
+      d="M -1 -1 L 0 1 L 1 -1 z"
+      :style="arrowStyle"
+      :transform="arrowTransform"
+    ></path>
   </g>
 </template>
 
@@ -67,14 +74,16 @@ export default {
     pathStyle() {
       return {
         stroke: "rgb(255, 136, 85)",
-        strokeWidth: 2.73205,
+        // strokeWidth: 2.73205,
+        strokeWidth: 6,
         fill: "none"
       };
     },
     arrowStyle() {
       return {
         stroke: "rgb(255, 136, 85)",
-        strokeWidth: 5.73205,
+        strokeWidth: 10,
+        // strokeWidth: 5.73205,
         fill: "none"
       };
     },
@@ -92,13 +101,17 @@ export default {
         y1 = cy + 50,
         x2 = ex,
         y2 = ey - 50;
-      return `M ${cx}, ${cy} C ${x1}, ${y1}, ${x2}, ${y2}, ${ex}, ${ey}`;
+      // return `M ${cx}, ${cy} C ${x1}, ${y1}, ${x2}, ${y2}, ${ex}, ${ey}`;
+      return `M ${cx}, ${cy} C ${x1 + 50}, ${y1 - 50}, ${x2 - 50}, ${y2 +
+        50}, ${ex}, ${ey}`;
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
+$themeColor: rgb(255, 136, 85);
+
 g {
   cursor: pointer;
 }

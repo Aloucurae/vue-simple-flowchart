@@ -93,10 +93,10 @@ export default {
         let x, y, cy, cx, ex, ey;
         x = this.scene.centerX + fromNode.x;
         y = this.scene.centerY + fromNode.y;
-        [cx, cy] = this.getPortPosition("bottom", x, y);
+        [cx, cy] = this.getPortPosition("right", x, y);
         x = this.scene.centerX + toNode.x;
         y = this.scene.centerY + toNode.y;
-        [ex, ey] = this.getPortPosition("top", x, y);
+        [ex, ey] = this.getPortPosition("left", x, y);
         return {
           start: [cx, cy],
           end: [ex, ey],
@@ -108,7 +108,7 @@ export default {
         const fromNode = this.findNodeWithID(this.draggingLink.from);
         x = this.scene.centerX + fromNode.x;
         y = this.scene.centerY + fromNode.y;
-        [cx, cy] = this.getPortPosition("bottom", x, y);
+        [cx, cy] = this.getPortPosition("right", x, y);
         // push temp dragging link, mouse cursor postion = link end postion
         lines.push({
           start: [cx, cy],
@@ -130,10 +130,10 @@ export default {
       });
     },
     getPortPosition(type, x, y) {
-      if (type === "top") {
-        return [x + 40, y];
-      } else if (type === "bottom") {
-        return [x + 40, y + 80];
+      if (type === "left") {
+        return [x, y + 32];
+      } else if (type === "right") {
+        return [x + 200, y + 32];
       }
     },
     linkingStart(index) {
